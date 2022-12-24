@@ -1,0 +1,30 @@
+$medium-screen: 640px;
+$large-screen: 1024px;
+$xlarge-screen: 1440px;
+
+@mixin breakpoint($break) {
+  @if $break == xlarge {
+    // 1440 + desktop
+    @media print, screen and (min-width: ( #{$xlarge-screen})) {
+      @content;
+    }
+  } @else if $break == large {
+    // 1024 + tablet landscape and small desktop
+    @media print, screen and (min-width: (#{$large-screen})) {
+      @content;
+    }
+  } @else if $break == medium {
+    // 640 +
+    @media print, screen and (min-width: (#{$medium-screen})) {
+      @content;
+    }
+  } @else {
+    @warn '#{$break} is not a supported breakpoint';
+  }
+}
+
+// usage of mixin breakpoint:
+//
+// @include breakpoint(medium) {
+//    -- styles --
+// }

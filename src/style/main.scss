@@ -1,0 +1,85 @@
+@import 'mixins';
+@import 'variables';
+// Example of mobile first
+// Mobile bg is red
+// tablet and up bg is $blue
+// Desktop and up bg is $purple
+// DO NOT leave these styles in on final code!
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  background: $red;
+  padding: 10px;
+  .items {
+    display: grid;
+    gap: 7px;
+    .item {
+      padding: 7px;
+      background-color: $white;
+      text-align: center;
+      &-title {
+        font-size: $mobile-title-font-size;
+      }
+      &-price {
+        font-size: $mobile-price-font-size;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  button.primary {
+    padding: 10px;
+    margin: 12px;
+    border: 1px solid $light;
+    border-radius: 7px;
+    background-color: $green;
+    color: $white;
+    font-weight: 700;
+    font-size: $mobile-price-font-size;
+  }
+  .actions {
+    text-align: center;
+  }
+  & > header {
+    text-align: center;
+    color: $white;
+  }
+
+  @include breakpoint(medium) {
+    background: $blue;
+    .items {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @include breakpoint(large) {
+    background: $purple;
+    .items {
+      grid-template-columns: repeat(4, 1fr);
+      .item {
+        &-title {
+          font-size: $desk-title-font-size;
+        }
+        &-price {
+          font-size: $desk-price-font-size;
+        }
+      }
+    }
+    button.primary {
+      font-size: $desk-price-font-size;
+    }
+  }
+}
